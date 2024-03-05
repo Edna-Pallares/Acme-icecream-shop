@@ -3,6 +3,23 @@ const express = require('express')
 const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/the_acme_notes_db')
 const app = express()
 
+// parse the body into JS Objects
+app.use(express.json())
+// Log the requests as they come in
+app.use(require('morgan')('dev'))
+
+//App Routes
+// Create Flavors 
+app.post('/api/flavors', async (req, res, next) => {});
+// Read Flavors 
+app.get('/api/flavors', async (req, res, next) => {});
+// Read Single Flavor 
+app.get('/api/flavors/:id', async (req, res, next) => {});
+// Update Flavors 
+app.put('/api/flavors/:id', async (req, res, next) => {});
+// Delete Flavors 
+app.delete('/api/flavors/:id', async (req, res, next) => {});
+
 // create and run the express app
 const init = async () => {
     await client.connect();
